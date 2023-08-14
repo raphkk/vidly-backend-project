@@ -5,18 +5,18 @@
 // Create an endpoint for getting the list of all genres
 // Your backend should be able to create a new genre
 // Update or delete the genre
+// Moved all the API endpoints to a folder called router
 
 // This exists inside the node_module
-const _ = require('underscore');
-const movies = _.contains([{
-  "genre": "Horror",
-  "movie name": "The witch",
-  "rating": 5.5
-},
-{
-  "genre": "Action",
-  "movie name": "Tenet",
-  "rating": 9.0
-}
-]);
-console.log(movies);
+const Joi = require('joi');
+const express = require('express');
+const app = express();
+const movies = require('./routes/movies');
+
+app.use(express.json());
+app.use('/vidly/movies', movies);
+
+
+const port = process.env.PORT || 3000;
+// Edit code below to ensure GET request receives your request
+app.listen(port, ()  => console.log(`Listening on port ${port}...`)); 
